@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tải lên bài hát</title>
+</head>
+<body>
+    <h1>Delete {{song.title}}?</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" class="btn btn-danger" value="Delete">
+      <a href="{%url 'appmusic:detail' pk=song.pk%}">Cancel</a>
+    </form>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="mt-4 p-5 rounded">
+        <h1>Welcome to the Shool Detail Page </h1>
+        <h2>School Details:</h2>
+        {% csrf_token %}
+        <p>Id_num: {{music_detail.id}}</p>
+        <p>Name: {{music_detail.title}}</p>
+        <p>Principal: {{music_detail.artist}}</p>
+        <p>Location: {{music_detail.category}}</p>
+        <p>Location: {{music_detail.audio_file}}</p>
+        <img src="/media/{{music_detail.image}}" alt="">
+        <audio controls>
+            <source src="/media/{{music_detail.audio_file}}" type="audio/mpeg">
+        </audio>
+    </div>
+    <div>
+        <p><a class="btn btn-warning" href="{%url 'appmusic:update' pk=music_detail.pk%}">Update</a></p>
+        <p><a class="btn btn-primary" href="{%url 'appmusic:delete' pk=music_detail.pk%}">Delete</a></p>
+    </div> 
+</body>
+</html>
+

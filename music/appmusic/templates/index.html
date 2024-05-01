@@ -1,0 +1,273 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block extra_css %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+{% endblock %}
+{% block body_block %}
+
+  {% comment %} Carousel {% endcomment %}
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="img-slide" src="{% static 'images/slide1.jpg' %}" class="d-block w-100" alt="..." />
+        <div class="carousel-caption d-none d-md-block">
+          <h5>First slide label</h5>
+          <p>Some representative placeholder content for the first slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="img-slide" src="{% static 'images/slide2.jpg' %}" class="d-block w-100" alt="..." />
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Second slide label</h5>
+          <p>Some representative placeholder content for the second slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="img-slide" src="{% static 'images/slide3.jpg' %}" class="d-block w-100" alt="..." />
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Third slide label</h5>
+          <p>Some representative placeholder content for the third slide.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon btn btn-secondary" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon btn btn-secondary" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <div class="container">
+    {% comment %} Top 100 music {% endcomment %}
+    <div class="top-music">
+      <h1 class="title">Top 100</h1>
+      <div class="row g-5">
+        <div class="col-3">
+          <div class="card" style="width: 16rem;">
+            <div class="img-container">
+              <a class="img-top" href="#"><img src="{% static 'images/top100nhactre.jpg' %}" class="card-img-top" alt="...">
+                <div class="overlay">
+                  <!-- Icon hoặc nội dung bạn muốn hiển thị ở giữa -->
+                  <i class="fas fa-play"></i>
+                </div>
+              </a>
+            </div>
+            <div class="card-body">
+              <a class="card-title" href="#">Top 100 Nhạc Trẻ</a>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="card" style="width: 16rem;">
+            <div class="img-container">
+              <a class="img-top" href="#"><img src="{% static 'images/top100danceviet.jpg' %}" class="card-img-top" alt="...">
+                <div class="overlay">
+                  <i class="fas fa-play"></i>
+                </div>
+              </a>
+
+            </div>
+            <div class="card-body">
+              <a class="card-title" href="#">Top 100 Nhạc Dance Việt</a>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="card" style="width: 16rem;">
+            <div class="img-container">  
+              <a class="img-top" href="#"><img src="{% static 'images/top100rapviet.jpg' %}" class="card-img-top" alt="...">
+                <div class="overlay">
+                  <i class="fas fa-play"></i>
+                </div>
+              </a>
+
+            </div>
+            
+            <div class="card-body">
+              <a class="card-title" href="#">Top 100 Nhạc Rap Việt</a>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="card" style="width: 16rem;">
+            <div class="img-container"> 
+              <a class="img-top" href="#"><img src="{% static 'images/top100adm.jpg' %}" class="card-img-top" alt="...">
+                <div class="overlay">
+                  <i class="fas fa-play"></i>
+                </div>
+              </a>
+
+            </div>
+            <div class="card-body">
+              <a class="card-title" href="#">Top 100 Nhạc ADM Việt</a>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="new-music">
+      <h2 class="title">{{ name_list1 }}</h2>
+      <div class="row">
+        {% for song in new_songs %}
+            <div class="col-md-4">
+              <div class="loader" onclick="getSongId('{{ song.track.preview_url }},{{song.track.name}},{{song.track.album.images.0.url}},{{ song.track.artists.0.name }}')">
+                <div class="col-md-9"> 
+                  <div class="song">
+                    <p class="name">{{ song.track.name }}</p>
+                    <p class="artist">{{ song.track.artists.0.name }}</p>
+                  </div>
+                </div>
+                <div class="col-md-2"> 
+                  <img class="albumcover" src="{{song.track.album.images.0.url}}" alt="{{ song.title }}">
+                </div>
+                <div class="col-md-1"> 
+                  <div id="loading_{{song.track.name}}" class="loading">
+                  </div>
+                  <div id="play_{{song.track.name}}" class="play"></div>
+                </div>
+                
+              </div>
+            </div>
+        {% endfor %}
+
+        {% comment %} <div class="col-4">
+          <div class="loader">
+            <div class="song">
+              <p class="name">Time in a Bottle</p>
+              <p class="artist">Jim Corce</p>
+            </div>
+            <img class="albumcover" src="https://photo-resize-zmp3.zmdcdn.me/w600_r1x1_jpeg/cover/0/f/b/3/0fb3ab6b2dd74fa6b7741ece6d47c29d.jpg" alt="">
+            <div class="loading">
+              <div class="load"></div>
+              <div class="load"></div>
+              <div class="load"></div>
+              <div class="load"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="loader">
+            <div class="song">
+              <p class="name">Time in a Bottle</p>
+              <p class="artist">Jim Corce</p>
+            </div>
+            <img class="albumcover" src="https://photo-resize-zmp3.zmdcdn.me/w600_r1x1_jpeg/cover/0/f/b/3/0fb3ab6b2dd74fa6b7741ece6d47c29d.jpg" alt="">
+            <div class="play"></div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="loader">
+            <div class="song">
+              <p class="name">Time in a Bottle</p>
+              <p class="artist">Jim Corce</p>
+            </div>
+            <img class="albumcover" src="https://photo-resize-zmp3.zmdcdn.me/w600_r1x1_jpeg/cover/0/f/b/3/0fb3ab6b2dd74fa6b7741ece6d47c29d.jpg" alt="">
+            <div class="play"></div>
+          </div>
+        </div> {% endcomment %}
+      </div>
+
+  </div>
+  <div class="content2">
+    <h1 class="title">{{ name_list2 }}</h1>
+
+    <table class="table_list_second">
+      <caption>List of users</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="col-1">#</th>
+          <th scope="col" class="col-5">Tiêu đề</th>
+          <th scope="col" class="col-3">Album</th>
+          <th scope="col" class="col-3">Ngày thêm</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for song2 in second_list %}
+        <tr>
+          <th scope="row" style="vertical-align: middle;">{{ forloop.counter }}</th>
+          <td class="align-middle">
+            <div class="content_title">
+              <img class="img_ct" src="{{song2.track.album.images.0.url}}" alt="{{ song.title }}">
+              <div class="song_info">
+                <p class="song_name">{{song2.track.name}}</p>
+                <p class="artist_name">{{ song2.track.artists.0.name }}</p>
+            </div>       
+            </div>
+          </td>
+          <td class="name_album" style="vertical-align: middle;">{{ song2.track.album.name }}</td>
+          <td class="date_ct" style="vertical-align: middle;" >{{ song2.added_at }}</td>
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+    
+  </div>
+
+
+
+  <h1 style="margin-bottom: 100px;">Latest Songs2</h1>
+  {% comment %} Quick_player_bar {% endcomment %}
+  <div class="bar_music">
+    <div id="quick_player">
+    <div class="row">
+      <div class="col-3">
+        <img id="imageMusic" src="https://i.scdn.co/image/ab67616d0000b2732103bdcdf1d4369f212b6862" alt="" >
+        <div class="infoMusic">
+          <h5 id="nameMusic">Now Playing: Song Title</h5>
+          <h5 id="artistMusic">Artist</h5>
+      </div>
+      
+      </div>
+      <div class="col-6">
+        <div id="quick_player_bar">
+          <div class="element_bar">
+            <div id="prev_btn"><i class="fa-solid fa-backward-step"></i></div>
+            <div id="play_pause_btn"><i class="fa-solid fa-play"></i></div>
+            <div id="next_btn"><i class="fa-solid fa-forward-step"></i></div>
+          </div>
+        </div>
+      <div id="customAudioPlayer">
+          <div id="currentTime">0:00</div>
+          <input type="range" id="progressBar" name="vol" value="0" min="0" max="100">
+          <div id="timeEnd">0:00</div>
+          
+      </div>
+      <audio id="myAudio">
+          <source src="https://p.scdn.co/mp3-preview/ce4f2b6156ee92ea01ce1578489640676bc6c059?cid=f01ab01a822b4249971356a03432eda3" type="audio/mp3">
+          Your browser does not support the audio element.
+      </audio>
+      </div>
+      
+      <div class="col-3">
+        <div id="volume_control">
+          <div id="volume_icon"><i class="fa-solid fa-volume-high"></i></div>
+          <input type="range" id="volumeControl" value="100" max="100">
+      </div>
+    </div>
+  </div>
+                
+    </div>
+  </div>
+{% endblock %}
+
+{% block js_block %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/vi.min.js"></script>
+  <script src="{% static 'js/index.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+{% endblock %}

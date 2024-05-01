@@ -1,0 +1,85 @@
+body, h1, p {
+  margin: 0;
+  padding: 0;
+}
+header {
+  background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20210812/pngtree-business-texture-three-dimensional-cut-light-effect-gradient-line-purple-background-image_761681.jpg');
+  background-size: cover;
+  color: #fff; /* Change to your preferred text color */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  }
+header a .logo{
+    height: 75px;
+    padding: 10px;
+    max-width: 100px;
+  }
+  h1 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  nav {
+    display: flex;
+  }
+  
+  .a-nav {
+    color: #fff; /* Change link text color */
+    text-decoration: none;
+    margin: 0 10px; /* Adjust the spacing between links */
+    font-weight: bold;
+  }
+  
+  .a-nav:hover {
+    color: #f00;
+  }
+  
+  .search-bar {
+    display: flex;
+    margin-left: auto;
+  }
+
+  
+  input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    background-color: #007bff; /* Change button background color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  .registration{
+    margin-left: 50px;
+  }
+  .btn-search{
+    margin-left: 10px;
+    border-radius: 5px;
+  }
+  .btn-register{
+    background-color: #ffffff;
+    color: #333;
+    border-radius: 5px;
+  }
+  .btn-register:hover{
+    background-color: #6c6c6c;
+    color: #333;
+    border-radius: 5px;
+  }
+  .btn-login{
+    background-color: #007bff;
+    color: #fcfcfc;
+    border-radius: 5px;
+  }
+  .btn-login:hover, .btn-search:hover{
+    background-color: #045ab7;
+  }
+

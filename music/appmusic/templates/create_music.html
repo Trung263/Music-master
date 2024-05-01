@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tải lên bài hát</title>
+</head>
+<body>
+    {% if not form.instance.pk %}
+    <h1>Tải lên bài hát</h1>
+    {% else %}
+    <h1>Update bài hát</h1>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Tải lên</button>
+    </form>
+</body>
+</html>

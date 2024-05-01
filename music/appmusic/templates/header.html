@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVT</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    {% block extra_css %}
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <a href="#"> <img class="logo" src="{% static 'images/logo.png' %}" alt="logo"></a>
+        <div class="options">
+          <nav>
+            <a class="a-nav" href="#">Trang chủ</a>
+            <a class="a-nav" href="#">Danh sách bài hát</a>
+            <a class="a-nav" href="#">Tài khoản</a>
+          </nav>
+        </div>
+
+        <div class="search-bar">
+          <input type="text" placeholder="Tìm kiếm bài hát">
+          <button class="btn-search">Tìm kiếm</button>
+        </div>
+        <div class="registration">
+          <button class="btn-register" type="button">Đăng ký</button>
+          <button class="btn-login" type="button">Đăng Nhập</button>
+        </div>
+      </header>
+      {% block body_block %}
+      {% endblock %}
+      {% block js_block %}
+      {% endblock %}
+</body>
+</html>
