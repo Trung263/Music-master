@@ -197,8 +197,8 @@
       </thead>
       <tbody>
         {% for song2 in second_list %}
-        <tr>
-          <th scope="row" style="vertical-align: middle;">{{ forloop.counter }}</th>
+        <tr class="row-tr">
+          <th class="stt" scope="row" style="vertical-align: middle;">{{ forloop.counter }}</th>
           <td class="align-middle">
             <div class="content_title">
               <img class="img_ct" src="{{song2.track.album.images.0.url}}" alt="{{ song.title }}">
