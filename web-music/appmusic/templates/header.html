@@ -9,32 +9,40 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
     <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     {% block extra_css %}
     {% endblock %}
 </head>
 <body>
-    <header>
-        <a href="#"> <img class="logo" src="{% static 'images/logo.png' %}" alt="logo"></a>
-        <div class="options">
-          <nav>
-            <a class="a-nav" href="#">Trang chủ</a>
-            <a class="a-nav" href="#">Danh sách bài hát</a>
-            <a class="a-nav" href="#">Tài khoản</a>
-          </nav>
-        </div>
+  <nav>
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">
+      <i class="fa fa-bars"></i>
+    </label>
+    <!-- Logo -->
+    <label class="logo"><a href="#"><img class="img-logo" src="{% static 'images/logo.png' %}" alt="logo"></a></label>
+    
+    <!-- Search bar -->
+    <div class="search-bar">
+      <input class="input-search" type="text" placeholder="Tìm kiếm bài hát">
+      <button class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
 
-        <div class="search-bar">
-          <input type="text" placeholder="Tìm kiếm bài hát">
-          <button class="btn-search">Tìm kiếm</button>
-        </div>
-        <div class="registration">
-          <button class="btn-register" type="button">Đăng ký</button>
-          <button class="btn-login" type="button">Đăng Nhập</button>
-        </div>
-      </header>
+    <!-- Option -->
+    <ul>
+      <li><a class="active" href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="#"><i class="fa-solid fa-book"></i> Thư viện</a></li>
+      <li><a href="#"><i class="fa-brands fa-discourse"></i> Khám phá</a></li>
+      <li><a href="#"><i class="fa-solid fa-wave-square"></i> Bản xếp hạng</a></li>
+      <li><a href="#"><i class="fa-solid fa-icons"></i> Mới nhất</a></li>
+    </ul>
+  </nav>
+ 
+
       {% block body_block %}
       {% endblock %}
-      {% block js_block %}
+      {% block js_block %}   
       {% endblock %}
+     
 </body>
 </html>

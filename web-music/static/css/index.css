@@ -17,7 +17,7 @@
   
   .card{
     text-align: center;
-    border: none;
+    border: none !important;
   }
 
   .img-top{
@@ -186,6 +186,12 @@ p{
   }
 }
 
+
+.table{
+  display: block;
+  overflow-x: auto;
+}
+
 /* quick_player_bar  */
 .bar_music{
   position: fixed;
@@ -197,17 +203,18 @@ p{
 }
 
 #quick_player {
+  display: flex;
   text-align: center;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 5px;
+  padding: 15px 25px;
 }
 .element_bar{
-  align-items: center;
-  justify-content: center;
-  width: 300px;
+  justify-content: space-around;
+  width: 90%;
   display: flex;
+  font-size: 25px;
 }
 
 #quick_player_bar {
@@ -215,12 +222,14 @@ p{
   align-items: center;
   justify-content: center;
   margin-top: 5px;
+  flex-direction: column;
+  width: 50%;
 }
 
 #play_pause_btn, #prev_btn, #next_btn {
   cursor: pointer;
-  font-size: 25px;
   margin: 0 10px;
+  display: contents;
 }
 #play_pause_btn{
   width: 40px;
@@ -232,6 +241,7 @@ p{
   display: flex;
   align-items: center;
   margin-top: 25px;
+  float: right;
 }
 
 #volume_icon {
@@ -246,16 +256,19 @@ p{
 
 #customAudioPlayer {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   margin-top: 5px;
+  width: 90%;
 }
 #progressBar{
   width: 100%;
   margin-top: 5px;
   margin-bottom: 10px;
 }
-
+.feature{
+  display: flex;
+  justify-content: center;
+  width: 20%;
+}
 .col-2 {
   display: flex;
   justify-content: center;
@@ -269,12 +282,9 @@ p{
 }
 #nameMusic{
   font-size: 14px;
-  margin-left: 10px;
-  margin-top: 20px;
 }
 #artistMusic{
   font-size: 8px;
-  margin-left: 10px;
 }
 .name{
   font-weight: 470;
@@ -316,6 +326,17 @@ p{
   font-weight: 500;
   color: #949494;
 }
+.infoMusic{
+  width: 30%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.content_infoMusic{
+  display: block;
+  text-align: center;
+}
 .name_album{
   color: #878787;
 }
@@ -333,4 +354,65 @@ p{
 .stt{
   padding-left: 10px;
   
+}
+.top-music{
+  width: auto;
+}
+.card{
+  width: 16rem;
+}
+
+
+@media (max-width: 858px){
+  .infoMusic{
+    width: 40%;
+  }
+  #quick_player_bar{
+    width: 60%;
+  }
+  .feature{
+    display: none;
+  }
+  #imageMusic {
+    width: 50px;
+    height: 50px;
+}
+#nameMusic {
+  font-size: 7px;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+#artistMusic {
+  font-size: 4px;
+  margin-left: 10px;
+}
+.element_bar{
+  font-size: 15px;
+}
+#quick_player_bar{
+  font-size: 11px;
+}
+#progressBar{
+  height: 5px;
+}
+#progressBar::-webkit-slider-thumb{
+  appearance: none;
+  width: 5px;
+  height: 5px;
+}
+.card{
+  width: 10rem;
+}
+.card-title{
+  font-size: 18px;
+}
+.card-text{
+  font-size: 14px;
+}
+.name{
+  font-size: 14px;
+}
+.row{
+  width: 100%;
+}
 }
