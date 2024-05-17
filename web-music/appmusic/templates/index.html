@@ -126,16 +126,16 @@
         {% for song in new_songs %}
             <div class="col-12 col-sm-6 col-md-4">
               <div class="loader" onclick="getSongId('{{ song.track.preview_url }},{{song.track.name}},{{song.track.album.images.0.url}},{{ song.track.artists.0.name }}')">
-                <div class="col-md-9"> 
+                <div class="col-9 col-md-9"> 
                   <div class="song">
                     <p class="name">{{ song.track.name }}</p>
                     <p class="artist">{{ song.track.artists.0.name }}</p>
                   </div>
                 </div>
-                <div class="col-md-2"> 
+                <div class="col-2 col-md-2"> 
                   <img class="albumcover" src="{{song.track.album.images.0.url}}" alt="{{ song.title }}">
                 </div>
-                <div class="col-md-1"> 
+                <div class="col-1 col-md-1"> 
                   <div id="loading_{{song.track.name}}" class="loading">
                   </div>
                   <div id="play_{{song.track.name}}" class="play"></div>

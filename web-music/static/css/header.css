@@ -37,7 +37,7 @@ label.logo a img{
   border-radius: 10px;
   padding: 10px 25px;
   background: transparent;
-  width: 300px;
+  width: 100%;
 }
 
 .search-bar .btn-search{
@@ -52,6 +52,7 @@ label.logo a img{
 }
 
 nav ul{
+  top: 65px;
   float: right;
   margin-right: 20px;
 }
@@ -76,8 +77,6 @@ a.active,a:hover{
   font-size: 30px;
   color: white;
   float: right;
-  line-height: 80px;
-  margin-right: 40px;
   cursor: pointer;
   display: none;
 }
@@ -85,9 +84,14 @@ a.active,a:hover{
   display: none;
 }
 @media (max-width: 952px){
+
+  label.logo a img{
+    width: 40px;
+    margin: 0 !important;
+  }
+
   label.logo{
-    font-size: 30px;
-    padding-left: 50px;
+    padding: 10px 30px;
   }
   nav ul li a{
     font-size: 16px;
@@ -96,9 +100,12 @@ a.active,a:hover{
 @media (max-width: 858px){
   .checkbtn{
     display: block;
-
+    font-size: 22px;
+    padding: 10px 30px;
   }
-
+  .search-bar{
+    width: 100%;
+  }
   ul{
     position: fixed;
     width: 100%;
@@ -125,6 +132,7 @@ a.active,a:hover{
   }
   #check:checked ~ ul{
     left: 0;
+    top: 65px;
   }
 }
 
