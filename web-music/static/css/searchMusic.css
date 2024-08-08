@@ -1,0 +1,114 @@
+.titlePage {
+  color: brown;
+  padding-bottom: 10px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.blockquote-footer {
+  font-size: 20px !important;
+  margin-bottom: 30px !important;
+}
+
+.name-type{
+  color: rgb(166, 79, 247);
+  font-weight: 600;
+  font-size: 2rem;
+  margin-top: 30px;
+  font-family: 'fangsong';
+}
+
+.card-title {
+  display: block;
+  padding-bottom: 10px;
+  font-size: 18px !important;
+  color: rgb(166, 79, 247) !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+
+}
+/* .card-title:hover{
+  text-indent: -100%;
+  transition: text-indent 5s linear;
+} */
+
+.card-title:hover {
+  font-size: 18px !important;
+  color: brown !important;
+
+}
+
+.card-text {
+  color: #6c757d !important;
+  font-weight: 600 !important;
+
+}
+
+.playlist {
+  padding-top: 10px;
+}
+
+.card {
+  padding: 10px !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+  height: 360px !important;
+}
+
+/* card artist */
+
+.search-artist {
+  display: flex;
+  overflow-x: auto;
+  padding: 20px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+
+}
+.search-artist:hover{
+  overflow-x: auto;
+}
+
+.card-artist {
+  background-color: white;
+  border-radius: 10px;
+  width: 180px;
+  margin-right: 20px;
+  text-align: center;
+  flex-shrink: 0;
+  padding: 10px;
+}
+.card-artist:hover {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 180px;
+  margin-right: 20px;
+  text-align: center;
+  flex-shrink: 0;
+  padding: 10px;
+}
+
+
+.card-artist img {
+  width: 100%;
+  height: auto;
+  border-radius: 100%;
+}
+
+.body-artist {
+  padding: 10px;
+}
+
+.name-artist {
+  font-size: 16px;
+  margin: 0;
+}
+
+.artist-text {
+  color: #777;
+  margin: 5px 0;
+  font-size: 15px;
+}
+

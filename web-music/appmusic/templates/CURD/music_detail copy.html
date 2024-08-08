@@ -10,19 +10,19 @@
         <h1>Welcome to the Shool Detail Page </h1>
         <h2>School Details:</h2>
         {% csrf_token %}
-        <p>Id_num: {{music_detail.id}}</p>
-        <p>Name: {{music_detail.title}}</p>
-        <p>Principal: {{music_detail.artist}}</p>
+        <p>Value search: {{valueSearch}}</p>
+        <p>Name: {{tracks}}</p>
+        <!-- <p>Principal: {{music_detail.artist}}</p>
         <p>Location: {{music_detail.category}}</p>
         <p>Location: {{music_detail.audio_file}}</p>
-        <img src="/media/{{music_detail.image}}" alt="">
+        <img src="/media/{{music_detail.image}}" alt=""> -->
         <audio controls>
             <source src="/media/{{music_detail.audio_file}}" type="audio/mpeg">
         </audio>
     </div>
     <div>
-        <p><a class="btn btn-warning" href="{%url 'appmusic:update' pk=music_detail.pk%}">Update</a></p>
-        <p><a class="btn btn-primary" href="{%url 'appmusic:delete' pk=music_detail.pk%}">Delete</a></p>
+        {% comment %} <p><a class="btn btn-warning" href="{%url 'appmusic:update' pk=music_detail.pk%}">Update</a></p>
+        <p><a class="btn btn-primary" href="{%url 'appmusic:delete' pk=music_detail.pk%}">Delete</a></p> {% endcomment %}
     </div> 
 </body>
 </html>

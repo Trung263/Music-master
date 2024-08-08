@@ -8,5 +8,5 @@ urlpatterns = [
     path('update/<int:pk>/',views.MusicUpdateView.as_view(),name='update'),
     path('delete/<int:pk>/',views.MusicDeleteView.as_view(),name='delete'),
     # Các URL khác
-    path('search', views.searchArtist, name='searchArtist'),
+    path('search', views.searchArtist, name='search_artist'),
 ]

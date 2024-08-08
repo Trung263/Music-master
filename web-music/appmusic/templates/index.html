@@ -1,12 +1,7 @@
 {% extends 'header.html' %}
 
 {% load static %}
-{% block extra_css %}
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-  <link rel="stylesheet" href="{% static 'css/index.css' %}" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-{% endblock %}
 {% block body_block %}
 
   {% comment %} Carousel {% endcomment %}
@@ -198,7 +193,7 @@
       </thead>
       <tbody>
         {% for song2 in second_list %}
-        <tr class="row-tr">
+        <tr class="row-tr" onclick="getSongId('{{ song2.track.preview_url }},{{song2.track.name}},{{song2.track.album.images.0.url}},{{ song2.track.artists.0.name }}')">
           <th class="stt" scope="row" style="vertical-align: middle;">{{ forloop.counter }}</th>
           <td class="align-middle">
             <div class="content_title">
@@ -218,50 +213,29 @@
     </table>
   </div>
 
-  {% comment %} Quick_player_bar {% endcomment %}
-  <div class="container">
-    <div class="bar_music">
-      <div id="quick_player">
-          <div class="infoMusic">
-            <img id="imageMusic" src="https://i.scdn.co/image/ab67616d0000b2732103bdcdf1d4369f212b6862" alt="" >
-            <div class="content_infoMusic">
-              <h5 id="nameMusic">Now Playing: Song Title</h5>
-              <h5 id="artistMusic">Artist</h5>
+  <h2 class="title">Featured Artists</h2>
+  <div class="top-artist">
+    {% for artist in artists %}
+          <div class="card-artist">
+            
+            <img class="img-ar" src="{{ artist.image }}" alt="{{ artist.name }}">
+            <div class="iconPlay">
+              <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445"/>
+              </svg>
+            </div>
+            <div class="body-artist">
+                <h2 class="name-artist">{{ artist.name }}</h2>
+                <p class="artist-text">Nghệ sĩ</p>
             </div>
         </div>
-        
-          <div id="quick_player_bar">
-            <div class="element_bar">
-              <div id="prev_btn"><i class="fa-solid fa-backward-step"></i></div>
-              <div id="play_pause_btn"><i class="fa-solid fa-play"></i></div>
-              <div id="next_btn"><i class="fa-solid fa-forward-step"></i></div>
-            </div>
-              <div id="customAudioPlayer">
-                <div id="currentTime">0:00</div>
-                <input type="range" id="progressBar" name="vol" value="0" min="0" max="100">
-                <div id="timeEnd">0:00</div>
-            </div>
-            <audio id="myAudio">
-                <source src="https://p.scdn.co/mp3-preview/ce4f2b6156ee92ea01ce1578489640676bc6c059?cid=f01ab01a822b4249971356a03432eda3" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
-          </div>
-        
-          <div class="feature">
-            <div id="volume_control">
-              <div id="volume_icon"><i class="fa-solid fa-volume-high"></i></div>
-              <input type="range" id="volumeControl" value="100" max="100">
-          </div>
-    </div>
-  </div>  
-    </div>
+      {% endfor %}
   </div>
+      
+
+{% include 'quick_player_bar.html' %}
 
 {% include 'footer.html' %}
 {% endblock %}
-{% block js_block %}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/vi.min.js"></script>
-  <script src="{% static 'js/index.js' %}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-{% endblock %}
+

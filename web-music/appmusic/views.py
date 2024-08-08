@@ -13,41 +13,77 @@ from django.views.generic import View,TemplateView,ListView,DetailView,CreateVie
 
 # Create your views here.
 
+ 
 
 
 def searchArtist(request):
+    client_credentials_manager = SpotifyClientCredentials(
+        client_id=settings.SPOTIPY_CLIENT_ID, 
+        client_secret=settings.SPOTIPY_CLIENT_SECRET
+    )
+    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
     valueSearch = request.GET.get('search')
-    print(valueSearch)
-    tracks = None
-    if valueSearch != None:
-        results = spotipy.search(q=valueSearch, limit=10)
-        tracks = [{'name': track['name'], 'artist': track['artists'][0]['name'], 'image': track['album']['images'][0]['url'], 'audio_preview': track['preview_url']} for track in results['tracks']['items']]
+    results = {
+        'tracks': [],
+        'playlists': [],
+        'artists': []
+    }
 
-    return render(request, 'test.html', {'tracks': tracks, 'valueSearch': valueSearch})
+    if valueSearch:
+        spotify_results = sp.search(q=valueSearch, limit=9, type='track,playlist,artist')
+        
+        # Get tracks
+        if 'tracks' in spotify_results:
+            results['tracks'] = spotify_results['tracks']['items']
+        
+        # Get playlists
+        if 'playlists' in spotify_results:
+            results['playlists'] = spotify_results['playlists']['items']
+        
+        # Get artists
+        if 'artists' in spotify_results:
+            results['artists'] = spotify_results['artists']['items']
+
+    return render(request, 'search_music.html', {'results': results, 'valueSearch': valueSearch})
+
 
 def index(request):
 
     client_credentials_manager=SpotifyClientCredentials(client_id=settings.SPOTIPY_CLIENT_ID,client_secret=settings.SPOTIPY_CLIENT_SECRET)
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-    latest_songs = Song.objects.order_by('-created_at')[:12]
 
     results = sp.featured_playlists(country='VN', limit=9)
     first_playlist_id = results['playlists']['items'][0]['id']
     second_playlist_id = results['playlists']['items'][1]['id']
+    top_artists_playlist_id = results['playlists']['items'][2]['id']
 
     nameList1 = results['playlists']['items'][0]['name']
 
     nameList2 = results['playlists']['items'][1]['name']
  
     playlist_tracks_info = sp.playlist_tracks(first_playlist_id,limit=12)
-    second_playlist_tracks_info = sp.playlist_tracks(second_playlist_id,limit=30)
+    second_playlist_tracks_info = sp.playlist_tracks(second_playlist_id,limit=12)
+
+    top_artists_tracks_info = sp.playlist_tracks(top_artists_playlist_id, limit=5)
+    
+    artists = []
+    for track in top_artists_tracks_info['items']:
+        artist = track['track']['artists'][0]
+        artist_id = sp.artist(artist['id'])
+        artist_info = {
+            'name': artist['name'],
+            'url': artist['external_urls']['spotify'],
+            'image': artist_id['images'][0]['url']
+        }
+        if artist_info not in artists: 
+            artists.append(artist_info)
 
     context = {
-        'latest_songs': latest_songs,
         'new_songs': playlist_tracks_info['items'],
         'second_list': second_playlist_tracks_info['items'],
         'name_list1': nameList1,
         'name_list2': nameList2,
+        'artists': artists,
         }
     return render(request, 'index.html', context)
 
