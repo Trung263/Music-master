@@ -66,6 +66,7 @@ def index(request):
  
     playlist_tracks_info = sp.playlist_tracks(first_playlist_id,limit=12)
     second_playlist_tracks_info = sp.playlist_tracks(second_playlist_id,limit=12)
+    top_artists_tracks_info = sp.playlist_tracks(top_artists_playlist_id, limit=5)
 
     new_songs = []
     for item in playlist_tracks_info['items']:
@@ -80,7 +81,7 @@ def index(request):
     
     
     second_list = []
-    for item in playlist_tracks_info['items']:
+    for item in second_playlist_tracks_info['items']:
         track = item['track']
         second_list.append({
             'name': track['name'],  # Tên bài hát
@@ -91,7 +92,7 @@ def index(request):
             'preview_url': track['preview_url'],  # URL audio preview
         })
 
-    top_artists_tracks_info = sp.playlist_tracks(top_artists_playlist_id, limit=5)
+    
     
     artists = []
     for track in top_artists_tracks_info['items']:
