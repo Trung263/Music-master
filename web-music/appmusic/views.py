@@ -8,12 +8,13 @@ from spotipy.oauth2 import SpotifyClientCredentials
 from appmusic.forms import CustomCreateSong
 from appmusic.models import Song
 from django.db.models.signals import pre_delete
+from spotipy.exceptions import SpotifyException
 from django.dispatch import receiver
 from django.views.generic import View,TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView
 
-# Create your views here.
 
- 
+
+# Create your views here.
 
 
 def searchArtist(request):
@@ -47,22 +48,48 @@ def searchArtist(request):
     return render(request, 'search_music.html', {'results': results, 'valueSearch': valueSearch})
 
 
+
 def index(request):
 
     client_credentials_manager=SpotifyClientCredentials(client_id=settings.SPOTIPY_CLIENT_ID,client_secret=settings.SPOTIPY_CLIENT_SECRET)
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+    
 
-    results = sp.featured_playlists(country='VN', limit=9)
-    first_playlist_id = results['playlists']['items'][0]['id']
-    second_playlist_id = results['playlists']['items'][1]['id']
-    top_artists_playlist_id = results['playlists']['items'][2]['id']
+    first_playlist_id = "0aiBKNSqiPnhtcw1QlXK5s"
+    second_playlist_id = "5ttuZoKUA8dgz9MyFeNjxZ"
+    top_artists_playlist_id = "6XFOsAdp88ptBCdqUMAfmP"
 
-    nameList1 = results['playlists']['items'][0]['name']
+    
 
-    nameList2 = results['playlists']['items'][1]['name']
+    nameList1 = sp.playlist(first_playlist_id, additional_types=('track',))['name']
+    nameList2 = sp.playlist(second_playlist_id, additional_types=('track',))['name']
  
     playlist_tracks_info = sp.playlist_tracks(first_playlist_id,limit=12)
     second_playlist_tracks_info = sp.playlist_tracks(second_playlist_id,limit=12)
+
+    new_songs = []
+    for item in playlist_tracks_info['items']:
+        track = item['track']
+        new_songs.append({
+            'name': track['name'],  # Tên bài hát
+            'artists': ', '.join([artist['name'] for artist in track['artists']]),  # Danh sách nghệ sĩ
+            'image': track['album']['images'][0]['url'],  # Hình ảnh album (size lớn nhất)
+            'preview_url': track['preview_url'],  # URL audio preview
+        })
+
+    
+    
+    second_list = []
+    for item in playlist_tracks_info['items']:
+        track = item['track']
+        second_list.append({
+            'name': track['name'],  # Tên bài hát
+            'artists': ', '.join([artist['name'] for artist in track['artists']]),  # Danh sách nghệ sĩ
+            'album': track['album']['name'],  # Tên album
+            'added_at': item['added_at'],  # Ngày thêm vào playlist
+            'image': track['album']['images'][0]['url'],  # Hình ảnh album (size lớn nhất)
+            'preview_url': track['preview_url'],  # URL audio preview
+        })
 
     top_artists_tracks_info = sp.playlist_tracks(top_artists_playlist_id, limit=5)
     
@@ -79,14 +106,13 @@ def index(request):
             artists.append(artist_info)
 
     context = {
-        'new_songs': playlist_tracks_info['items'],
-        'second_list': second_playlist_tracks_info['items'],
+        'new_songs': new_songs,
+        'second_list': second_list,
         'name_list1': nameList1,
         'name_list2': nameList2,
         'artists': artists,
         }
     return render(request, 'index.html', context)
-
 
 
 class MusicDetailView(DetailView):

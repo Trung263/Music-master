@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -134,5 +135,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Spotify
 
+
 SPOTIPY_CLIENT_ID = 'f01ab01a822b4249971356a03432eda3'
 SPOTIPY_CLIENT_SECRET = '03f9e10fc4e84f79ba765a1e2f40e494'
+SPOTIFY_REDIRECT_URI='http://127.0.0.1:8000/callback/'

@@ -120,20 +120,20 @@
       <div class="row">
         {% for song in new_songs %}
             <div class="col-12 col-sm-6 col-md-4">
-              <div class="loader" onclick="getSongId('{{ song.track.preview_url }},{{song.track.name}},{{song.track.album.images.0.url}},{{ song.track.artists.0.name }}')">
+              <div class="loader" onclick="getSongId('{{ song.preview_url }},{{song.name}},{{song.image}},{{ song.artists }}')">
                 <div class="col-9 col-md-9"> 
                   <div class="song">
-                    <p class="name">{{ song.track.name }}</p>
-                    <p class="artist">{{ song.track.artists.0.name }}</p>
+                    <p class="name">{{ song.name }}</p>
+                    <p class="artist">{{ song.artists }}</p>
                   </div>
                 </div>
                 <div class="col-2 col-md-2"> 
-                  <img class="albumcover" src="{{song.track.album.images.0.url}}" alt="{{ song.title }}">
+                  <img class="albumcover" src="{{song.image}}" alt="{{ song.title }}">
                 </div>
                 <div class="col-1 col-md-1"> 
-                  <div id="loading_{{song.track.name}}" class="loading">
+                  <div id="loading_{{song.name}}" class="loading">
                   </div>
-                  <div id="play_{{song.track.name}}" class="play"></div>
+                  <div id="play_{{song.name}}" class="play"></div>
                 </div>
                 
               </div>
@@ -193,18 +193,18 @@
       </thead>
       <tbody>
         {% for song2 in second_list %}
-        <tr class="row-tr" onclick="getSongId('{{ song2.track.preview_url }},{{song2.track.name}},{{song2.track.album.images.0.url}},{{ song2.track.artists.0.name }}')">
+        <tr class="row-tr" onclick="getSongId('{{ song2.preview_url }},{{song2.name}},{{song2.image}},{{ song2.artists }}')">
           <th class="stt" scope="row" style="vertical-align: middle;">{{ forloop.counter }}</th>
           <td class="align-middle">
             <div class="content_title">
-              <img class="img_ct" src="{{song2.track.album.images.0.url}}" alt="{{ song.title }}">
+              <img class="img_ct" src="{{song2.image}}" alt="{{ song2.title }}">
               <div class="song_info">
-                <p class="song_name">{{song2.track.name}}</p>
-                <p class="artist_name">{{ song2.track.artists.0.name }}</p>
+                <p class="song_name">{{song2.name}}</p>
+                <p class="artist_name">{{ song2.artists }}</p>
             </div>       
             </div>
           </td>
-          <td class="name_album" style="vertical-align: middle;">{{ song2.track.album.name }}</td>
+          <td class="name_album" style="vertical-align: middle;">{{ song2.album }}</td>
           <td class="date_ct" style="vertical-align: middle;" >{{ song2.added_at }}</td>
         </tr>
         {% endfor %}
@@ -214,6 +214,34 @@
   </div>
 
   <h2 class="title">Featured Artists</h2>
+
+  <ul>
+    {% for track in tracks %}
+    <li>
+        <h3>{{ track.name }}</h3>
+        <p><strong>Artists:</strong> {{ track.artists }}</p>
+        <img src="{{ track.image }}" alt="Album cover for {{ track.name }}" width="200">
+        {% if track.preview_url %}
+            <p><a href="{{ track.preview_url }}" target="_blank">Preview Audio</a></p>
+            <audio controls>
+                <source src="{{ track.preview_url }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        {% else %}
+            <p>No preview available</p>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+<h2>Tracks in Playlist</h2>
+<ul>
+    {% for track in tracks %}
+        <li>
+            <a href="https://open.spotify.com/track/{{ track.track.id }}" target="_blank">{{ track.track.name }} by {{ track.track.artists.0.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
   <div class="top-artist">
     {% for artist in artists %}
           <div class="card-artist">
@@ -232,7 +260,6 @@
         </div>
       {% endfor %}
   </div>
-      
 
 {% include 'quick_player_bar.html' %}
 

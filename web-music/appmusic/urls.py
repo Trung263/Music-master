@@ -1,6 +1,7 @@
 from django.urls import path
 from appmusic import views
 
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('<int:pk>/', views.MusicDetailView.as_view(), name='detail'),
@@ -9,4 +10,7 @@ urlpatterns = [
     path('delete/<int:pk>/',views.MusicDeleteView.as_view(),name='delete'),
     # Các URL khác
     path('search', views.searchArtist, name='search_artist'),
+
+
+
 ]
